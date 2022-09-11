@@ -42,6 +42,7 @@
   </div>
 </template>
 <script>
+import { signIn } from '../../models/auth'
 export default {
   data() {
     return {
@@ -55,11 +56,13 @@ export default {
     },
   },
   methods: {
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
-      alert(
-        `You are submit with studentCode ${this.studentCode}: ${this.password}`
-      )
+      const res = await signIn({
+        studentCode: this.studentCode,
+        password: this.password,
+      })
+      console.log(res)
     },
   },
 }
